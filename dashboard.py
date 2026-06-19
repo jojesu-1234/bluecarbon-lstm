@@ -21,7 +21,7 @@ from tensorflow.keras.layers import LSTM, Dense, Dropout
 st.set_page_config(page_title="블루카본 해양산성화 LSTM 대시보드", page_icon="🌊", layout="wide")
 st.title("🌊 블루카본과 해양산성화 완화 상관관계 분석")
 st.markdown("**LSTM 딥러닝 기반 pH 예측 대시보드** | 서해중부(블루카본 O) vs 동해(블루카본 X)")
-st.markdown("CNSA 20121 이건혁, 20514 서영빈 | 2026년 2학년 1학기 자율창의활동")
+st.markdown("**CNSA** 20121 이건혁, 20514 서영빈 | 2026년 2학년 1학기 자율창의활동")
 st.divider()
 
 FEATURE_COLS = ['수온(℃)표층_scaled','염분표층_scaled','용존산소량(㎎/L)표층_scaled','클로로필A(㎍/L)표층_scaled','bluecarbon_scaled']
