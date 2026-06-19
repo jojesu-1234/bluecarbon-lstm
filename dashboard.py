@@ -3,9 +3,16 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib
+import os
+import matplotlib.font_manager as fm
 import folium
 from streamlit_folium import st_folium
-matplotlib.rcParams['font.family'] = 'Malgun Gothic'
+font_path = "fonts/NanumGothic.ttf"
+if os.path.exists(font_path):
+    fm.fontManager.addfont(font_path)
+    matplotlib.rcParams['font.family'] = fm.FontProperties(fname=font_path).get_name()
+else:
+    matplotlib.rcParams['font.family'] = 'Malgun Gothic'
 matplotlib.rcParams['axes.unicode_minus'] = False
 from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras.models import Sequential
@@ -361,23 +368,29 @@ with tab4:
     } for r in regions_sorted])
     st.dataframe(df_map, use_container_width=True)
 
-with tab5:
+with tab5:  # 너의 실제 탭 이름에 맞춰줘 (tab4일 수도 있음)
     st.subheader("연구 결론")
     st.markdown("""
 ### 🔬 탐구 가설
 > **블루카본 생태계가 CO₂를 흡수함으로써 르샤틀리에 원리에 의해 해수의 pH 하락(산성화)을 완화한다**
+""")
 
----
-### ⚗️ 르샤틀리에 원리 메커니즘
+    st.markdown("---")
+    st.markdown("### ⚗️ 르샤틀리에 원리 메커니즘")
+
+    st.markdown("""
 | 단계 | 내용 |
 |---|---|
+| 화학반응식 | $CO_2 + H_2O \\rightleftharpoons H^+ + HCO_3^-$ |
 | 1 | 블루카본 광합성으로 해수 CO₂ 흡수 |
 | 2 | 해수 CO₂ 농도 감소 |
 | 3 | 평형이 역방향으로 이동 |
 | 4 | H⁺ 농도 감소 |
-| 5 | pH 상승 → 산성화 완화 ✅ |
+| 5 | pH 상승 → 해양산성화 완화 ✅ |
+""")
 
----
+    st.markdown("---")
+    st.markdown("""
 ### 🤖 LSTM 분석 결과
 | 구분 | 서해중부 (블루카본 O) | 동해 (블루카본 X) |
 |---|---|---|
